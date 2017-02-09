@@ -99,4 +99,6 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, inline: "npm install --global yo"  
   config.vm.provision :shell, inline: "npm install --global @microsoft/generator-sharepoint"
 
+  # Install gulp
+  config.vm.provision :shell, inline: "npm install gulp --global"  
 end
