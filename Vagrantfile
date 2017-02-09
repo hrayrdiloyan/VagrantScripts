@@ -95,9 +95,10 @@ Vagrant.configure("2") do |config|
   # install node.js
   config.vm.provision :shell, inline: "curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -"
   config.vm.provision :shell, inline: "sudo apt-get install -y nodejs"
-  
+
 
   # Install yeoman generator
+  
   config.vm.provision :shell, inline: "npm install --global yo"  
   config.vm.provision :shell, inline: "npm install --global @microsoft/generator-sharepoint"
 
