@@ -72,7 +72,10 @@ Vagrant.configure("2") do |config|
 
 ################## Hrayr Code goes here ################################################################
   # Oh My ZSH Install section
-
+config.vm.provision "fix-no-tty", type: "shell" do |s|
+    s.privileged = false
+    s.inline = "sudo sed -i '/tty/!s/mesg n/tty -s \\&\\& mesg n/' /root/.profile"
+end
   # Install git and zsh prerequisites 
   config.vm.provision :shell, inline: "apt-get update"
   config.vm.provision :shell, inline: "apt-get -y install git"
@@ -96,12 +99,10 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, inline: "curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -"
   config.vm.provision :shell, inline: "sudo apt-get install -y nodejs"
 
-
   # Install yeoman generator
-  
-  config.vm.provision :shell, inline: "npm install --global yo"  
-  config.vm.provision :shell, inline: "npm install --global @microsoft/generator-sharepoint"
+  config.vm.provision :shell, inline: "sudo npm install --global yo"  
+  config.vm.provision :shell, inline: "sudo npm install --global @microsoft/generator-sharepoint"
 
   # Install gulp
-  config.vm.provision :shell, inline: "npm install gulp --global"  
+  config.vm.provision :shell, inline: "sudo npm install gulp --global"  
 end
